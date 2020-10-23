@@ -43,7 +43,7 @@ namespace Amazatools.Compression
             else { return val; }          
         }
     }
-
+     
     [System.Serializable]
     public struct FloatCompression  : IEquatable<FloatCompression>
     {

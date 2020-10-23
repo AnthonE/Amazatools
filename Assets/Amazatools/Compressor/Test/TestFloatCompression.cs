@@ -7,7 +7,7 @@ namespace Amazatools.Compression
      /// </summary>
     public class TestFloatCompression : MonoBehaviour
     {
-       
+         
         public float TestFloat = 1234.567f;
         public Transform PreviewUncompressed;
         public Transform PreviewCubeCompressed;
