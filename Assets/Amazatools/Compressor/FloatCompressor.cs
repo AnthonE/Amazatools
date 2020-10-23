@@ -34,18 +34,18 @@ namespace Amazatools.Compression
             return DeBruijnLSBsSet[unchecked((value | value >> 16) * 0x07c4acddu) >> 27];
         }
 
-        public static byte[] DeBruijnLSBsSet = new byte[] { 0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30, 8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31 };
+        public static readonly byte[] DeBruijnLSBsSet = new byte[] { 0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30, 8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31 };
 
         public static T Clamp<T>(this T val, T min, T max) where T : IComparable<T>
         {
-            if (val.CompareTo(min) < 0) return min;
-            else if (val.CompareTo(max) > 0) return max;
-            else return val;
+            if (val.CompareTo(min) < 0) { return min; }
+            else if (val.CompareTo(max) > 0) { return max; }
+            else { return val; }          
         }
     }
 
     [System.Serializable]
-    public struct FloatCompression
+    public struct FloatCompression  : IEquatable<FloatCompression>
     {
         public readonly uint _compressed;
         public readonly float _min;
@@ -61,6 +61,16 @@ namespace Amazatools.Compression
             this._accuracy = accuracy;
             this._bits = bits;
         }
+
+        public bool Equals(FloatCompression other)
+        {
+            if (other._compressed == this._compressed)
+            {
+                return true;
+            }
+                return false;
+        }
+
     }
 
     [System.Serializable]

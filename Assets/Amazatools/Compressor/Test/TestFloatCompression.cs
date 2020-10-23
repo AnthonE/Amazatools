@@ -12,13 +12,11 @@ namespace Amazatools.Compression
         public Transform PreviewUncompressed;
         public Transform PreviewCubeCompressed;
         [Header("Real time status:")]
-        public float TestFloatAfterDecompression;
-        public float CompressionDiffrence;
-        public int CompressedBits;
+        [SerializeField] private float TestFloatAfterDecompression;
+        [SerializeField] private float CompressionDiffrence;
+        [SerializeField] private int CompressedBits;
         public FloatCompressionSettings TestCompressionSettings = new FloatCompressionSettings { Accuracy = 0.02f, Min = -5000, Max = 5000 };
-        private FloatCompression FloatCompression;
-
-
+   
         void Start()
         {
             Debug.Log("Starting Compression Test");
@@ -30,7 +28,7 @@ namespace Amazatools.Compression
 
         void UpdateTest()
         {
-            FloatCompression = FloatCompressor.TotalCompression(TestFloat, TestCompressionSettings);
+            FloatCompression FloatCompression = FloatCompressor.TotalCompression(TestFloat, TestCompressionSettings);
             TestFloatAfterDecompression = FloatCompressor.TotalUnCompression(FloatCompression);
 
             if (TestCompressionSettings.Min < TestFloatAfterDecompression && TestFloatAfterDecompression < TestCompressionSettings.Max)
@@ -44,10 +42,14 @@ namespace Amazatools.Compression
             }
             else
             {
-                if(TestCompressionSettings.Min > TestFloatAfterDecompression)
-                Debug.LogWarning("The TestFloat is lower then TestCompressionSettings.Min here is the result:" + TestFloatAfterDecompression);
+                if (TestCompressionSettings.Min > TestFloatAfterDecompression)
+                {
+                    Debug.LogWarning("The TestFloat is lower then TestCompressionSettings.Min here is the result:" + TestFloatAfterDecompression);
+                }
                 else
-                Debug.LogWarning("The TestFloat is higher then TestCompressionSettings.mac here is the result:" + TestFloatAfterDecompression);
+                {
+                    Debug.LogWarning("The TestFloat is higher then TestCompressionSettings.mac here is the result:" + TestFloatAfterDecompression);
+                }
             }
         }
     }
